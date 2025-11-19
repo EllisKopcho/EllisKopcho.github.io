@@ -1,11 +1,283 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My GitHub Site</title>
+  <title>Your Name – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card-bg: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --accent: #111111;
+      --border: #e1e1e1;
+      --max-width: 800px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px 16px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    header {
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      color: var(--muted);
+      max-width: 520px;
+      font-size: 0.95rem;
+    }
+
+    nav {
+      margin: 20px 0 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .about {
+      margin-bottom: 40px;
+    }
+
+    .about p {
+      font-size: 0.95rem;
+      max-width: 620px;
+    }
+
+    .entries {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .entry {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 16px 16px 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .entry-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .entry-title {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .entry-text {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .entry-image-wrapper {
+      border-radius: 10px;
+      overflow: hidden;
+      max-height: 260px;
+    }
+
+    .entry-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    @media (min-width: 720px) {
+      .entry {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+        align-items: center;
+      }
+
+      .entry-image-wrapper {
+        max-height: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello from GitHub Pages!</h1>
-  <p>This is my first website hosted on GitHub.</p>
+  <div class="page">
+    <header>
+      <h1>Your Name</h1>
+      <p>
+        Short one-line intro. For example: “Student interested in journalism,
+        photography, and engineering.” Replace this with your own description.
+      </p>
+    </header>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#entries">Highlights</a>
+      <a href="mailto:youremail@example.com">Email</a>
+      <!-- Add other links like resume, GitHub, portfolio, etc. -->
+    </nav>
+
+    <section id="about" class="about">
+      <div class="section-title">About</div>
+      <p>
+        Use this space for 2–3 sentences about who you are and what you do.
+        You can mention your interests, what you are studying, and what you
+        are hoping to pursue in college.
+      </p>
+    </section>
+
+    <section id="entries">
+      <div class="section-title">Highlights</div>
+      <div class="entries">
+        <!-- ENTRY 1 -->
+        <article class="entry">
+          <div>
+            <div class="entry-meta">
+              <span>Nov 2025</span>
+              <span class="entry-tag">Photography</span>
+            </div>
+            <h2 class="entry-title">Friday Night Game Coverage</h2>
+            <p class="entry-text">
+              Shot a full game for the school team, focusing on capturing
+              moments that showed both the strategy of the game and the energy
+              in the stands. Selected images were used in a recap article and
+              shared by the athletics department.
+            </p>
+          </div>
+          <div class="entry-image-wrapper">
+            <!-- Replace the src with your own image URL or file path -->
+            <img src="images/game-photo.jpg" alt="Football game under stadium lights" />
+          </div>
+        </article>
+
+        <!-- ENTRY 2 -->
+        <article class="entry">
+          <div>
+            <div class="entry-meta">
+              <span>Oct 2025</span>
+              <span class="entry-tag">Writing</span>
+            </div>
+            <h2 class="entry-title">Feature on Local Jazz Musicians</h2>
+            <p class="entry-text">
+              Interviewed members of an intergenerational jazz band and wrote
+              a feature on how live music builds community across ages. The
+              piece combined reporting, photography, and personal reflection.
+            </p>
+          </div>
+          <div class="entry-image-wrapper">
+            <img src="images/jazz-band.jpg" alt="Musician playing trombone on stage" />
+          </div>
+        </article>
+
+        <!-- ENTRY 3 -->
+        <article class="entry">
+          <div>
+            <div class="entry-meta">
+              <span>Sep 2025</span>
+              <span class="entry-tag">Project</span>
+            </div>
+            <h2 class="entry-title">3D Printed Engineering Project</h2>
+            <p class="entry-text">
+              Designed and printed custom components for a small engineering
+              project, testing different materials and infill patterns. Used
+              the results to make a short writeup on how design choices
+              affect performance.
+            </p>
+          </div>
+          <div class="entry-image-wrapper">
+            <img src="images/3d-print.jpg" alt="Close-up photo of a 3D printed part" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        © <span id="year"></span> Your Name.
+        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </p>
+    </footer>
+
+    <script>
+      // Sets the year automatically
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </div>
 </body>
 </html>
