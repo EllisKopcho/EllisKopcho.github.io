@@ -34,22 +34,14 @@
       overflow-x: hidden;
     }
 
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    /* ---------- HERO ---------- */
+    /* ---------- HERO (FULL SCREEN) ---------- */
 
     .hero {
       position: relative;
+      width: 100vw;
       height: 100vh;
       min-height: 520px;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
     }
 
     .hero-bg {
@@ -59,23 +51,12 @@
       z-index: -2;
     }
 
-    .hero-bg::before {
-      /* warm overlay for vintage feel */
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(160deg, rgba(0,0,0,0.55), transparent 55%),
-        radial-gradient(circle at top left, rgba(255,244,221,0.55), transparent 60%);
-      mix-blend-mode: multiply;
-      z-index: 1;
-    }
-
     .hero-photo {
       position: absolute;
       inset: -6%;
       background: #111;
       overflow: hidden;
+      transform-origin: center;
     }
 
     .hero-photo img {
@@ -84,6 +65,18 @@
       object-fit: cover;
       filter: contrast(1.05) saturate(1.05);
       transform: scale(1.08);
+      display: block;
+    }
+
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(0,0,0,0.55), transparent 55%),
+        radial-gradient(circle at top left, rgba(255,244,221,0.55), transparent 60%);
+      mix-blend-mode: multiply;
+      z-index: 1;
     }
 
     .hero-noise {
@@ -96,124 +89,102 @@
       z-index: 2;
     }
 
-    .hero-inner {
+    .hero-content {
       position: relative;
-      z-index: 5;
       width: 100%;
-      max-width: var(--max-width);
-      color: #fdf6e9;
-      display: grid;
-      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.3fr);
-      gap: 18px;
-      align-items: center;
+      height: 100%;
+      z-index: 5;
     }
 
-    .hero-text {
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .hero-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.7rem;
-      color: rgba(255, 244, 225, 0.75);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
+    .hero-name {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) translateX(0);
       font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: clamp(2.8rem, 6vw, 3.8rem);
-      line-height: 0.9;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-title span {
-      display: block;
-    }
-
-    .hero-title .surname {
-      font-size: 1.15em;
-    }
-
-    .hero-subline {
-      margin-top: 10px;
-      font-size: 0.95rem;
-      max-width: 420px;
-    }
-
-    .hero-subline strong {
-      font-weight: 600;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-      font-size: 0.78rem;
-    }
-
-    .tag {
-      padding: 4px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.45);
-      background: rgba(12, 8, 5, 0.35);
-      backdrop-filter: blur(6px);
+      font-size: clamp(3rem, 7vw, 5.3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #fdf6e9;
       white-space: nowrap;
     }
 
-    .hero-meta {
-      justify-self: flex-end;
+    #first-name {
+      left: 6vw;
+      text-align: left;
+    }
+
+    #last-name {
+      right: 6vw;
       text-align: right;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: rgba(255, 244, 225, 0.8);
     }
 
-    .hero-meta span {
-      display: block;
-    }
-
-    .hero-scroll {
+    .hero-subtitle {
       position: absolute;
-      bottom: 22px;
+      bottom: 9vh;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(253, 246, 234, 0.78);
+      color: rgba(253, 246, 234, 0.88);
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 540px;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      z-index: 10;
     }
 
-    .hero-scroll-line {
-      width: 60px;
-      height: 1px;
-      background: rgba(253,246,234,0.8);
+    .scroll-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 1.6s ease-in-out infinite;
+      background: rgba(10, 8, 6, 0.45);
+      backdrop-filter: blur(8px);
     }
 
-    /* ---------- BLOG SECTION ---------- */
+    .scroll-arrow {
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #fdf6e9;
+    }
 
-    .blog-shell {
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* ---------- POSTS SECTION ---------- */
+
+    .posts-shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
       background: var(--paper);
-      border-radius: 26px 26px 0 0;
-      border-top: 1px solid rgba(0,0,0,0.15);
-      box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
-      margin-top: -40px;
-      padding: 26px 18px 40px;
-      position: relative;
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
+      padding: 32px 20px 40px;
     }
 
-    .blog-header {
+    .posts-header {
       text-align: left;
       margin-bottom: 8px;
     }
 
-    .blog-label {
+    .posts-label {
       text-transform: uppercase;
       letter-spacing: 0.22em;
       font-size: 0.7rem;
@@ -221,14 +192,14 @@
       margin-bottom: 4px;
     }
 
-    .blog-title {
+    .posts-title {
       font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 1.2rem;
       letter-spacing: 0.06em;
       color: var(--line);
     }
 
-    .blog-note {
+    .posts-note {
       font-size: 0.78rem;
       color: var(--muted);
       margin-top: 3px;
@@ -302,7 +273,6 @@
       color: var(--muted);
     }
 
-    /* spacing after last entry */
     .post:last-of-type {
       margin-bottom: 6px;
     }
@@ -312,7 +282,7 @@
     footer {
       max-width: var(--max-width);
       margin: 12px auto 20px;
-      padding: 0 18px;
+      padding: 0 20px;
       font-size: 0.75rem;
       color: var(--muted);
       display: flex;
@@ -334,22 +304,18 @@
 
     /* ---------- RESPONSIVE ---------- */
 
-    @media (max-width: 780px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    @media (max-width: 740px) {
+      #first-name {
+        left: 8vw;
+        font-size: clamp(2.6rem, 10vw, 4.2rem);
       }
-    }
-
-    @media (max-width: 640px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 18px;
+      #last-name {
+        right: 8vw;
+        font-size: clamp(2.6rem, 10vw, 4.2rem);
       }
-      .hero-meta {
-        text-align: left;
-      }
-      .blog-shell {
-        border-radius: 22px 22px 0 0;
+      .hero-subtitle {
+        bottom: 11vh;
+        padding: 0 16px;
       }
       .post-grid {
         grid-template-columns: minmax(0, 1fr);
@@ -361,55 +327,40 @@
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg">
-        <div class="hero-photo" id="hero-photo">
-          <!-- Replace this with a real photo of you -->
-          <img src="https://picsum.photos/seed/you/1600/1000" alt="Background portrait placeholder" />
-        </div>
-        <div class="hero-noise"></div>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-photo" id="hero-photo">
+        <!-- Replace this with a real photo of you -->
+        <img src="https://picsum.photos/seed/you/1600/1000" alt="Background portrait placeholder" />
       </div>
+      <div class="hero-noise"></div>
+    </div>
 
-      <div class="hero-inner">
-        <div class="hero-text" id="hero-text">
-          <div class="hero-kicker">Portfolio</div>
-          <h1 class="hero-title">
-            <span class="surname">YOUR LAST NAME</span>
-            <span>YOUR FIRST NAME</span>
-          </h1>
-          <p class="hero-subline">
-            Student interested in <strong>sports photography</strong>,
-            <strong>writing</strong>, and <strong>engineering projects</strong>.
-            I like building work that feels a bit analog, a bit experimental,
-            and grounded in real communities.
-          </p>
-          <div class="hero-tags">
-            <span class="tag">journalism</span>
-            <span class="tag">photography</span>
-            <span class="tag">3d printing &amp; engineering</span>
-          </div>
-        </div>
+    <div class="hero-content">
+      <div class="hero-name" id="first-name">FIRST NAME</div>
+      <div class="hero-name" id="last-name">LAST NAME</div>
 
-        <div class="hero-meta">
-          <span>2024–2025</span>
-          <span>selected work</span>
+      <p class="hero-subtitle">
+        Student interested in sports photography, writing, and engineering projects.
+        I like work that feels a bit analog, a bit experimental, and rooted in real communities.
+      </p>
+
+      <div class="scroll-indicator" id="scroll-indicator">
+        <div class="scroll-circle">
+          <span class="scroll-arrow"></span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="hero-scroll" id="scroll-down">
-        <span class="hero-scroll-line"></span>
-        <span>scroll</span>
-      </div>
-    </section>
-
-    <!-- BLOG AREA -->
-    <section class="blog-shell" id="blog">
-      <header class="blog-header">
-        <div class="blog-label">Projects & posts</div>
-        <div class="blog-title">A few things I’ve been working on</div>
-        <div class="blog-note">Each row is one project – title, short description, and an image.</div>
+  <!-- POSTS SECTION -->
+  <main id="posts">
+    <section class="posts-shell">
+      <header class="posts-header">
+        <div class="posts-label">Projects & posts</div>
+        <div class="posts-title">A few things I’ve been working on</div>
+        <div class="posts-note">Title on the left, short description inside the “blob,” and an image on the right.</div>
       </header>
 
       <div class="post-list">
@@ -420,13 +371,13 @@
             <div>
               <h2 class="post-title">Friday Night Game Coverage</h2>
               <div class="post-blob">
-                Shot a full varsity game from the sidelines, trying to capture both
-                the strategy on the field and the atmosphere in the stands.
+                Shot a full varsity game from the sidelines, trying to capture
+                both the strategy on the field and the atmosphere in the stands.
                 Delivered a full gallery for a recap article and social posts.
               </div>
             </div>
             <div class="post-image">
-              <!-- Replace with your own photo -->
+              <!-- Replace with your own image -->
               <img src="https://picsum.photos/seed/game/900/650" alt="Stadium lights over a night game" />
             </div>
           </div>
@@ -440,10 +391,10 @@
             <div>
               <h2 class="post-title">Intergenerational Jazz Feature</h2>
               <div class="post-blob">
-                Reported on a jazz group that mixes students and retirees. I
-                interviewed players, photographed rehearsals, and wrote a piece
-                about how weekly sessions in a small room can connect people who
-                might never otherwise meet.
+                Reported on a jazz group that mixes students and retirees.
+                I interviewed players, photographed rehearsals, and wrote about how
+                a weekly session in a small room can connect people who might never
+                otherwise meet.
               </div>
             </div>
             <div class="post-image">
@@ -461,22 +412,22 @@
               <h2 class="post-title">3D-Printed Materials Experiment</h2>
               <div class="post-blob">
                 Designed and printed test pieces with different infill patterns
-                and materials, then documented how they failed under load.
-                Turned the results into a small writeup connecting design
-                choices to real performance.
+                and materials, then documented how each one failed under load.
+                Turned the results into a small writeup connecting design choices
+                to real performance.
               </div>
             </div>
             <div class="post-image">
-              <img src="https://picsum.photos/seed/print/900/650" alt="Close up of a 3D printed part" />
+              <img src="https://picsum.photos/seed/print/900/650" alt="Close up of a 3D-printed part" />
             </div>
           </div>
           <div class="post-date">Posted · Sep 2024</div>
         </article>
 
-        <!-- Add more posts by copying a <hr> + <article class="post"> block -->
+        <!-- Add more posts by copying the <hr> + <article class="post"> block -->
       </div>
     </section>
-  </div>
+  </main>
 
   <footer>
     <span>© <span id="year"></span> Your Name</span>
@@ -490,32 +441,42 @@
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Scroll-down button
-    const scrollBtn = document.getElementById("scroll-down");
-    const blogSection = document.getElementById("blog");
-    scrollBtn.addEventListener("click", () => {
-      const rect = blogSection.getBoundingClientRect();
-      const offset = window.scrollY + rect.top - 20;
+    const hero = document.getElementById("hero");
+    const heroPhoto = document.getElementById("hero-photo");
+    const firstName = document.getElementById("first-name");
+    const lastName = document.getElementById("last-name");
+    const scrollIndicator = document.getElementById("scroll-indicator");
+    const postsSection = document.getElementById("posts");
+
+    // Arrow click scroll
+    scrollIndicator.addEventListener("click", () => {
+      const rect = postsSection.getBoundingClientRect();
+      const offset = window.scrollY + rect.top;
       window.scrollTo({ top: offset, behavior: "smooth" });
     });
 
-    // Hero text fade / parallax
-    const heroText = document.getElementById("hero-text");
-    const heroPhoto = document.getElementById("hero-photo");
-
-    window.addEventListener("scroll", () => {
+    // Scroll interaction: parallax + first/last name slide off screen
+    function onScroll() {
       const y = window.scrollY || window.pageYOffset;
-      const h = window.innerHeight || 1;
-      const t = Math.min(y / (h * 0.8), 1); // 0 -> 1 as you scroll past hero
+      const heroHeight = hero.offsetHeight || window.innerHeight || 1;
+      const t = Math.min(Math.max(y / heroHeight, 0), 1); // 0 -> 1
 
-      // Fade and slide text
-      const opacity = 1 - t * 1.1;
-      heroText.style.opacity = opacity < 0 ? 0 : opacity;
-      heroText.style.transform = `translateY(${t * -40}px)`;
+      // Move first name left, last name right
+      const move = t * 60; // vw
+      const opacity = Math.max(0, 1 - t * 1.2);
 
-      // Slight parallax on image
-      heroPhoto.style.transform = `translateY(${t * 40}px) scale(${1.08 + t * 0.05})`;
-    });
+      firstName.style.transform = `translateY(-50%) translateX(-${move}vw)`;
+      lastName.style.transform = `translateY(-50%) translateX(${move}vw)`;
+      firstName.style.opacity = opacity;
+      lastName.style.opacity = opacity;
+
+      // Subtle parallax on photo
+      heroPhoto.style.transform =
+        `scale(${1.08 + t * 0.05}) translateY(${t * 40}px)`;
+    }
+
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("load", onScroll);
   </script>
 </body>
 </html>
