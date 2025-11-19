@@ -4,15 +4,19 @@
   <meta charset="UTF-8" />
   <title>Your Name – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
-      --bg: #f7f7f7;
-      --card-bg: #ffffff;
-      --text: #111111;
+      --bg: #f4f3f1;
+      --paper: #ffffff;
+      --ink: #111111;
       --muted: #666666;
-      --accent: #111111;
-      --border: #e1e1e1;
-      --max-width: 800px;
+      --accent: #1c4c8a;
+      --border: #e0ddd7;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      --radius-lg: 18px;
+      --radius-sm: 999px;
+      --max-width: 860px;
     }
 
     * {
@@ -24,10 +28,10 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      padding: 24px 16px 40px;
+      background: radial-gradient(circle at top, #fdfcf9, #f3f1ee);
+      color: var(--ink);
+      line-height: 1.6;
+      padding: 32px 16px 48px;
       display: flex;
       justify-content: center;
     }
@@ -35,120 +39,206 @@
     .page {
       width: 100%;
       max-width: var(--max-width);
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 26px;
+      border: 1px solid rgba(222, 220, 215, 0.9);
+      box-shadow: var(--shadow);
+      padding: 26px 22px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at -10% -20%, #e4f0ff 0, transparent 55%),
+                  radial-gradient(circle at 120% 110%, #ffe8d5 0, transparent 60%);
+      opacity: 0.65;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .content {
+      position: relative; /* so content sits above the background gradient */
+      z-index: 1;
     }
 
     header {
-      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 26px;
     }
 
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 4px;
+    .name {
+      font-size: 1.9rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
     }
 
-    header p {
-      color: var(--muted);
-      max-width: 520px;
+    .tagline {
       font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 500px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.06);
+      background: rgba(248, 248, 248, 0.9);
+      color: #444;
     }
 
     nav {
-      margin: 20px 0 32px;
+      margin: 14px 0 26px;
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      font-size: 0.9rem;
+      gap: 10px;
+      font-size: 0.86rem;
     }
 
     nav a {
       text-decoration: none;
-      color: var(--muted);
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.05);
+      background: rgba(248, 248, 248, 0.92);
+      color: #333;
+      backdrop-filter: blur(8px);
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     nav a:hover {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
+      background: #111111;
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+      gap: 28px;
+      align-items: flex-start;
     }
 
     .section-title {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .about {
-      margin-bottom: 40px;
+      margin-bottom: 10px;
     }
 
     .about p {
-      font-size: 0.95rem;
-      max-width: 620px;
+      font-size: 0.93rem;
+      color: #222;
+    }
+
+    .about {
+      padding-right: 6px;
     }
 
     .entries {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
     .entry {
-      background: var(--card-bg);
-      border-radius: 14px;
+      background: var(--paper);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      padding: 16px 16px 18px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
+      padding: 12px 12px 0;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s;
     }
 
-    .entry-meta {
+    .entry::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border-left: 4px solid rgba(28, 76, 138, 0.3);
+      pointer-events: none;
+    }
+
+    .entry:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+      border-color: rgba(28, 76, 138, 0.5);
+    }
+
+    .entry-inner {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .entry-tag {
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 0.75rem;
-      white-space: nowrap;
-    }
-
-    .entry-title {
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-
-    .entry-text {
-      font-size: 0.9rem;
-      color: var(--text);
+      flex-direction: column;
+      gap: 10px;
     }
 
     .entry-image-wrapper {
-      border-radius: 10px;
+      border-radius: 14px;
       overflow: hidden;
-      max-height: 260px;
+      margin-top: 6px;
     }
 
     .entry-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .entry-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 2px 2px 0;
+    }
+
+    .entry-tag {
+      padding: 3px 9px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.07);
+      background: rgba(247, 247, 247, 0.9);
+      white-space: nowrap;
+      font-size: 0.74rem;
+    }
+
+    .entry-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+      padding: 0 2px;
+    }
+
+    .entry-text {
+      font-size: 0.88rem;
+      color: #222;
+      padding: 0 2px 10px;
     }
 
     footer {
-      margin-top: 40px;
-      font-size: 0.8rem;
+      margin-top: 28px;
+      font-size: 0.78rem;
       color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     footer a {
@@ -162,122 +252,152 @@
       border-bottom-color: var(--accent);
     }
 
-    @media (min-width: 720px) {
-      .entry {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-        align-items: center;
+    @media (max-width: 720px) {
+      .page {
+        padding: 20px 16px 24px;
+        border-radius: 22px;
       }
 
-      .entry-image-wrapper {
-        max-height: 220px;
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .about {
+        padding-right: 0;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <header>
-      <h1>Your Name</h1>
-      <p>
-        Short one-line intro. For example: “Student interested in journalism,
-        photography, and engineering.” Replace this with your own description.
-      </p>
-    </header>
+  <main class="page">
+    <div class="content">
+      <header>
+        <div class="name">Your Name</div>
+        <p class="tagline">
+          Student interested in journalism, photography, and engineering.
+          I like building things, telling stories, and learning how systems work.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Portfolio</span>
+          <span class="pill">Work in progress</span>
+        </div>
+      </header>
 
-    <nav>
-      <a href="#about">About</a>
-      <a href="#entries">Highlights</a>
-      <a href="mailto:youremail@example.com">Email</a>
-      <!-- Add other links like resume, GitHub, portfolio, etc. -->
-    </nav>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#highlights">Highlights</a>
+        <a href="mailto:you@example.com">Email</a>
+        <!-- Add links to resume, GitHub, LinkedIn, etc. -->
+      </nav>
 
-    <section id="about" class="about">
-      <div class="section-title">About</div>
-      <p>
-        Use this space for 2–3 sentences about who you are and what you do.
-        You can mention your interests, what you are studying, and what you
-        are hoping to pursue in college.
-      </p>
-    </section>
+      <section class="layout">
+        <!-- Left column: About -->
+        <section id="about" class="about">
+          <div class="section-title">About</div>
+          <p>
+            I am a high school student who splits time between cameras, code,
+            and sketchbooks. I like documenting the communities I am part of
+            and designing projects that are hands on and curious. This page
+            collects a few things I am proud of recently.
+          </p>
+        </section>
 
-    <section id="entries">
-      <div class="section-title">Highlights</div>
-      <div class="entries">
-        <!-- ENTRY 1 -->
-        <article class="entry">
-          <div>
-            <div class="entry-meta">
-              <span>Nov 2025</span>
-              <span class="entry-tag">Photography</span>
-            </div>
-            <h2 class="entry-title">Friday Night Game Coverage</h2>
-            <p class="entry-text">
-              Shot a full game for the school team, focusing on capturing
-              moments that showed both the strategy of the game and the energy
-              in the stands. Selected images were used in a recap article and
-              shared by the athletics department.
-            </p>
-          </div>
-          <div class="entry-image-wrapper">
-            <!-- Replace the src with your own image URL or file path -->
-            <img src="images/game-photo.jpg" alt="Football game under stadium lights" />
-          </div>
-        </article>
+        <!-- Right column: Entries -->
+        <section id="highlights">
+          <div class="section-title">Recent highlights</div>
+          <div class="entries">
 
-        <!-- ENTRY 2 -->
-        <article class="entry">
-          <div>
-            <div class="entry-meta">
-              <span>Oct 2025</span>
-              <span class="entry-tag">Writing</span>
-            </div>
-            <h2 class="entry-title">Feature on Local Jazz Musicians</h2>
-            <p class="entry-text">
-              Interviewed members of an intergenerational jazz band and wrote
-              a feature on how live music builds community across ages. The
-              piece combined reporting, photography, and personal reflection.
-            </p>
-          </div>
-          <div class="entry-image-wrapper">
-            <img src="images/jazz-band.jpg" alt="Musician playing trombone on stage" />
-          </div>
-        </article>
+            <!-- ENTRY 1 -->
+            <article class="entry">
+              <div class="entry-inner">
+                <div class="entry-meta-row">
+                  <span>Nov 2025</span>
+                  <span class="entry-tag">Photography</span>
+                </div>
+                <h2 class="entry-title">Friday night game coverage</h2>
+                <p class="entry-text">
+                  Covered a full home game from the sidelines, looking for
+                  small moments that showed both the play calling and the
+                  atmosphere in the stands. A selection of photos was used
+                  in a recap article and shared by the athletics program.
+                </p>
+                <div class="entry-image-wrapper">
+                  <!-- Placeholder image – replace with your own later -->
+                  <img
+                    src="https://picsum.photos/seed/game/900/520"
+                    alt="Stadium lights over a night game"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </article>
 
-        <!-- ENTRY 3 -->
-        <article class="entry">
-          <div>
-            <div class="entry-meta">
-              <span>Sep 2025</span>
-              <span class="entry-tag">Project</span>
-            </div>
-            <h2 class="entry-title">3D Printed Engineering Project</h2>
-            <p class="entry-text">
-              Designed and printed custom components for a small engineering
-              project, testing different materials and infill patterns. Used
-              the results to make a short writeup on how design choices
-              affect performance.
-            </p>
-          </div>
-          <div class="entry-image-wrapper">
-            <img src="images/3d-print.jpg" alt="Close-up photo of a 3D printed part" />
-          </div>
-        </article>
-      </div>
-    </section>
+            <!-- ENTRY 2 -->
+            <article class="entry">
+              <div class="entry-inner">
+                <div class="entry-meta-row">
+                  <span>Oct 2025</span>
+                  <span class="entry-tag">Writing</span>
+                </div>
+                <h2 class="entry-title">Feature on local musicians</h2>
+                <p class="entry-text">
+                  Wrote a feature on a small jazz group that mixes students
+                  and retirees. Interviewed players about why they keep
+                  coming back to the same garage each week and how live
+                  music connects people who might not otherwise meet.
+                </p>
+                <div class="entry-image-wrapper">
+                  <img
+                    src="https://picsum.photos/seed/jazz/900/520"
+                    alt="Musicians playing under soft stage light"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </article>
 
-    <footer>
-      <p>
-        © <span id="year"></span> Your Name.
-        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
-          GitHub
-        </a>
-      </p>
-    </footer>
+            <!-- ENTRY 3 -->
+            <article class="entry">
+              <div class="entry-inner">
+                <div class="entry-meta-row">
+                  <span>Sep 2025</span>
+                  <span class="entry-tag">Project</span>
+                </div>
+                <h2 class="entry-title">3D printed engineering project</h2>
+                <p class="entry-text">
+                  Designed and printed custom parts, testing different
+                  materials and infill patterns. Documented the results and
+                  compared how small design decisions changed strength and
+                  failure points.
+                </p>
+                <div class="entry-image-wrapper">
+                  <img
+                    src="https://picsum.photos/seed/print/900/520"
+                    alt="Close up of a 3D printed part"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+      </section>
+
+      <footer>
+        <span>© <span id="year"></span> Your Name</span>
+        <span>
+          <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </span>
+      </footer>
+    </div>
 
     <script>
-      // Sets the year automatically
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-  </div>
+  </main>
 </body>
 </html>
