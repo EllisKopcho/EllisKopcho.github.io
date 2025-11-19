@@ -129,7 +129,6 @@
       max-width: 540px;
     }
 
-    /* Scroll indicator */
     .scroll-indicator {
       position: absolute;
       bottom: 24px;
@@ -168,15 +167,44 @@
       50% { transform: translateY(5px); }
     }
 
-    /* ---------- POSTS SECTION ---------- */
+    /* ---------- POSTS SECTION (FULL WIDTH) ---------- */
 
     .posts-shell {
-      max-width: var(--max-width);
-      margin: 0 auto;
+      position: relative;
+      width: 100vw;
       background: var(--paper);
       border-radius: 24px 24px 0 0;
       box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
-      padding: 32px 20px 40px;
+      padding: 32px 0 40px;
+      overflow: hidden;
+    }
+
+    .posts-inner {
+      position: relative;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2; /* above the line */
+    }
+
+    /* The wiggly line behind posts */
+    .posts-line {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .posts-line path {
+      fill: none;
+      stroke: rgba(73, 130, 157, 0.55);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 0;
+      stroke-dashoffset: 0;
     }
 
     .posts-header {
@@ -218,6 +246,14 @@
 
     .post {
       padding: 6px 0 18px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .post.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .post-grid {
@@ -356,75 +392,89 @@
 
   <!-- POSTS SECTION -->
   <main id="posts">
-    <section class="posts-shell">
-      <header class="posts-header">
-        <div class="posts-label">Projects & posts</div>
-        <div class="posts-title">A few things I’ve been working on</div>
-        <div class="posts-note">Title on the left, short description inside the “blob,” and an image on the right.</div>
-      </header>
+    <section class="posts-shell" id="posts-shell">
+      <!-- Curvy line behind posts -->
+      <svg class="posts-line" viewBox="0 0 100 600" preserveAspectRatio="none">
+        <!-- Adjust the path shape if you want different loops -->
+        <path id="posts-path"
+          d="M 15 0
+             C 10 40, 40 60, 30 110
+             C 20 160, 70 180, 60 230
+             C 50 280, 25 310, 35 360
+             C 45 410, 80 430, 70 480
+             C 60 530, 35 555, 50 600" />
+      </svg>
 
-      <div class="post-list">
-        <!-- POST 1 -->
-        <hr class="post-line" />
-        <article class="post">
-          <div class="post-grid">
-            <div>
-              <h2 class="post-title">Friday Night Game Coverage</h2>
-              <div class="post-blob">
-                Shot a full varsity game from the sidelines, trying to capture
-                both the strategy on the field and the atmosphere in the stands.
-                Delivered a full gallery for a recap article and social posts.
+      <div class="posts-inner">
+        <header class="posts-header">
+          <div class="posts-label">Projects & posts</div>
+          <div class="posts-title">A few things I’ve been working on</div>
+          <div class="posts-note">Title on the left, short description in the “blob,” and an image on the right.</div>
+        </header>
+
+        <div class="post-list">
+          <!-- POST 1 -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Friday Night Game Coverage</h2>
+                <div class="post-blob">
+                  Shot a full varsity game from the sidelines, trying to capture
+                  both the strategy on the field and the atmosphere in the stands.
+                  Delivered a full gallery for a recap article and social posts.
+                </div>
+              </div>
+              <div class="post-image">
+                <!-- Replace with your own image -->
+                <img src="https://picsum.photos/seed/game/900/650" alt="Stadium lights over a night game" />
               </div>
             </div>
-            <div class="post-image">
-              <!-- Replace with your own image -->
-              <img src="https://picsum.photos/seed/game/900/650" alt="Stadium lights over a night game" />
-            </div>
-          </div>
-          <div class="post-date">Posted · Nov 2024</div>
-        </article>
+            <div class="post-date">Posted · Nov 2024</div>
+          </article>
 
-        <!-- POST 2 -->
-        <hr class="post-line" />
-        <article class="post">
-          <div class="post-grid">
-            <div>
-              <h2 class="post-title">Intergenerational Jazz Feature</h2>
-              <div class="post-blob">
-                Reported on a jazz group that mixes students and retirees.
-                I interviewed players, photographed rehearsals, and wrote about how
-                a weekly session in a small room can connect people who might never
-                otherwise meet.
+          <!-- POST 2 -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Intergenerational Jazz Feature</h2>
+                <div class="post-blob">
+                  Reported on a jazz group that mixes students and retirees.
+                  I interviewed players, photographed rehearsals, and wrote about how
+                  a weekly session in a small room can connect people who might never
+                  otherwise meet.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="https://picsum.photos/seed/jazz/900/650" alt="Musician playing under warm light" />
               </div>
             </div>
-            <div class="post-image">
-              <img src="https://picsum.photos/seed/jazz/900/650" alt="Musician playing under warm light" />
-            </div>
-          </div>
-          <div class="post-date">Posted · Oct 2024</div>
-        </article>
+            <div class="post-date">Posted · Oct 2024</div>
+          </article>
 
-        <!-- POST 3 -->
-        <hr class="post-line" />
-        <article class="post">
-          <div class="post-grid">
-            <div>
-              <h2 class="post-title">3D-Printed Materials Experiment</h2>
-              <div class="post-blob">
-                Designed and printed test pieces with different infill patterns
-                and materials, then documented how each one failed under load.
-                Turned the results into a small writeup connecting design choices
-                to real performance.
+          <!-- POST 3 -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">3D-Printed Materials Experiment</h2>
+                <div class="post-blob">
+                  Designed and printed test pieces with different infill patterns
+                  and materials, then documented how each one failed under load.
+                  Turned the results into a small writeup connecting design choices
+                  to real performance.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="https://picsum.photos/seed/print/900/650" alt="Close up of a 3D-printed part" />
               </div>
             </div>
-            <div class="post-image">
-              <img src="https://picsum.photos/seed/print/900/650" alt="Close up of a 3D-printed part" />
-            </div>
-          </div>
-          <div class="post-date">Posted · Sep 2024</div>
-        </article>
+            <div class="post-date">Posted · Sep 2024</div>
+          </article>
 
-        <!-- Add more posts by copying the <hr> + <article class="post"> block -->
+          <!-- Add more posts by copying the <hr> + <article class="post"> block -->
+        </div>
       </div>
     </section>
   </main>
@@ -447,6 +497,8 @@
     const lastName = document.getElementById("last-name");
     const scrollIndicator = document.getElementById("scroll-indicator");
     const postsSection = document.getElementById("posts");
+    const postsShell = document.getElementById("posts-shell");
+    const postsPath = document.getElementById("posts-path");
 
     // Arrow click scroll
     scrollIndicator.addEventListener("click", () => {
@@ -455,8 +507,8 @@
       window.scrollTo({ top: offset, behavior: "smooth" });
     });
 
-    // Scroll interaction: parallax + first/last name slide off screen
-    function onScroll() {
+    // Hero scroll interaction: parallax + first/last name slide off screen
+    function onHeroScroll() {
       const y = window.scrollY || window.pageYOffset;
       const heroHeight = hero.offsetHeight || window.innerHeight || 1;
       const t = Math.min(Math.max(y / heroHeight, 0), 1); // 0 -> 1
@@ -470,13 +522,53 @@
       firstName.style.opacity = opacity;
       lastName.style.opacity = opacity;
 
-      // Subtle parallax on photo
+      // Parallax on image
       heroPhoto.style.transform =
         `scale(${1.08 + t * 0.05}) translateY(${t * 40}px)`;
     }
 
+    // Wiggly line draw on scroll
+    const pathLength = postsPath.getTotalLength();
+    postsPath.style.strokeDasharray = pathLength;
+    postsPath.style.strokeDashoffset = pathLength;
+
+    function onPostsScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const shellTop = postsShell.offsetTop;
+      const shellHeight = postsShell.offsetHeight;
+      const viewport = window.innerHeight || 1;
+
+      const start = shellTop - viewport * 0.2; // start drawing just before section hits
+      const end = shellTop + shellHeight - viewport * 0.3;
+      const progressRaw = (scrollY - start) / (end - start);
+      const progress = Math.min(Math.max(progressRaw, 0), 1);
+
+      const drawLength = pathLength * progress;
+      postsPath.style.strokeDashoffset = pathLength - drawLength;
+    }
+
+    function onScroll() {
+      onHeroScroll();
+      onPostsScroll();
+    }
+
     window.addEventListener("scroll", onScroll);
     window.addEventListener("load", onScroll);
+
+    // Fade-in posts when they come into view
+    const postElements = document.querySelectorAll(".post");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    postElements.forEach((post) => observer.observe(post));
   </script>
 </body>
 </html>
