@@ -98,7 +98,6 @@
 
     .hero-name {
       position: absolute;
-      top: 50%;
       transform: translateY(-50%) translateX(0);
       font-family: "Playfair Display", "Times New Roman", serif;
       font-size: clamp(3rem, 7vw, 5.3rem);
@@ -108,12 +107,15 @@
       white-space: nowrap;
     }
 
+    /* first name slightly higher, last name slightly lower */
     #first-name {
+      top: 44%;
       left: 6vw;
       text-align: left;
     }
 
     #last-name {
+      top: 56%;
       right: 6vw;
       text-align: right;
     }
@@ -187,7 +189,7 @@
       z-index: 2; /* above the line */
     }
 
-    /* The wiggly line behind posts */
+    /* Wiggly line behind posts */
     .posts-line {
       position: absolute;
       inset: 0;
@@ -199,7 +201,7 @@
 
     .posts-line path {
       fill: none;
-      stroke: rgba(73, 130, 157, 0.55);
+      stroke: rgba(73, 130, 157, 0.6);
       stroke-width: 6;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -342,10 +344,12 @@
 
     @media (max-width: 740px) {
       #first-name {
+        top: 42%;
         left: 8vw;
         font-size: clamp(2.6rem, 10vw, 4.2rem);
       }
       #last-name {
+        top: 58%;
         right: 8vw;
         font-size: clamp(2.6rem, 10vw, 4.2rem);
       }
@@ -393,16 +397,17 @@
   <!-- POSTS SECTION -->
   <main id="posts">
     <section class="posts-shell" id="posts-shell">
-      <!-- Curvy line behind posts -->
-      <svg class="posts-line" viewBox="0 0 100 600" preserveAspectRatio="none">
-        <!-- Adjust the path shape if you want different loops -->
+      <!-- Wigglier line behind posts -->
+      <svg class="posts-line" viewBox="0 0 100 800" preserveAspectRatio="none">
         <path id="posts-path"
           d="M 15 0
-             C 10 40, 40 60, 30 110
-             C 20 160, 70 180, 60 230
-             C 50 280, 25 310, 35 360
-             C 45 410, 80 430, 70 480
-             C 60 530, 35 555, 50 600" />
+             C 5 40, 60 60, 25 120
+             C 0 170, 90 190, 40 250
+             C 15 290, 80 310, 70 360
+             C 60 410, 20 430, 35 480
+             C 50 520, 95 540, 60 590
+             C 30 630, 70 650, 55 710
+             C 40 760, 20 780, 50 800" />
       </svg>
 
       <div class="posts-inner">
@@ -426,7 +431,6 @@
                 </div>
               </div>
               <div class="post-image">
-                <!-- Replace with your own image -->
                 <img src="https://picsum.photos/seed/game/900/650" alt="Stadium lights over a night game" />
               </div>
             </div>
@@ -473,6 +477,66 @@
             <div class="post-date">Posted · Sep 2024</div>
           </article>
 
+          <!-- POST 4 -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Hollywood Bowl Season</h2>
+                <div class="post-blob">
+                  Worked as an usher at the Hollywood Bowl, helping thousands of
+                  guests find their seats while watching how a large live venue
+                  runs behind the scenes. Learned a lot about crowd flow and
+                  what it takes to make big events feel smooth.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="https://picsum.photos/seed/bowl/900/650" alt="Concert crowd under evening lights" />
+              </div>
+            </div>
+            <div class="post-date">Posted · Aug 2024</div>
+          </article>
+
+          <!-- POST 5 -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Backyard Show Series</h2>
+                <div class="post-blob">
+                  Helped organize small backyard concerts for local bands:
+                  handled promotion, basic sound checks, and photo coverage.
+                  The goal was to give friends a place to perform and build a
+                  tiny, recurring music scene from scratch.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="https://picsum.photos/seed/show/900/650" alt="Band playing in a small backyard" />
+              </div>
+            </div>
+            <div class="post-date">Posted · Jul 2024</div>
+          </article>
+
+          <!-- POST 6 -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Eye-Tracking Prototype</h2>
+                <div class="post-blob">
+                  Built a small eye-tracking prototype that measures where
+                  someone is looking on a screen and visualizes the path with
+                  simple graphics. Used it as a way to explore how people
+                  actually read and watch media.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="https://picsum.photos/seed/eye/900/650" alt="Abstract eye tracking visualization" />
+              </div>
+            </div>
+            <div class="post-date">Posted · May 2024</div>
+          </article>
+
           <!-- Add more posts by copying the <hr> + <article class="post"> block -->
         </div>
       </div>
@@ -500,6 +564,10 @@
     const postsShell = document.getElementById("posts-shell");
     const postsPath = document.getElementById("posts-path");
 
+    const postElements = document.querySelectorAll(".post");
+    const firstPost = postElements[0];
+    const lastPost = postElements[postElements.length - 1];
+
     // Arrow click scroll
     scrollIndicator.addEventListener("click", () => {
       const rect = postsSection.getBoundingClientRect();
@@ -513,8 +581,7 @@
       const heroHeight = hero.offsetHeight || window.innerHeight || 1;
       const t = Math.min(Math.max(y / heroHeight, 0), 1); // 0 -> 1
 
-      // Move first name left, last name right
-      const move = t * 60; // vw
+      const move = t * 60; // amount to travel horizontally in vw
       const opacity = Math.max(0, 1 - t * 1.2);
 
       firstName.style.transform = `translateY(-50%) translateX(-${move}vw)`;
@@ -527,19 +594,27 @@
         `scale(${1.08 + t * 0.05}) translateY(${t * 40}px)`;
     }
 
-    // Wiggly line draw on scroll
+    // Wiggly line draw on scroll, synced to posts
     const pathLength = postsPath.getTotalLength();
     postsPath.style.strokeDasharray = pathLength;
     postsPath.style.strokeDashoffset = pathLength;
 
     function onPostsScroll() {
+      if (!firstPost || !lastPost) return;
+
       const scrollY = window.scrollY || window.pageYOffset;
-      const shellTop = postsShell.offsetTop;
-      const shellHeight = postsShell.offsetHeight;
       const viewport = window.innerHeight || 1;
 
-      const start = shellTop - viewport * 0.2; // start drawing just before section hits
-      const end = shellTop + shellHeight - viewport * 0.3;
+      const firstRect = firstPost.getBoundingClientRect();
+      const lastRect = lastPost.getBoundingClientRect();
+
+      const firstY = firstRect.top + scrollY;
+      const lastY = lastRect.bottom + scrollY;
+
+      // Start just before first post, end just after last post
+      const start = firstY - viewport * 0.7;
+      const end = lastY - viewport * 0.3;
+
       const progressRaw = (scrollY - start) / (end - start);
       const progress = Math.min(Math.max(progressRaw, 0), 1);
 
@@ -556,7 +631,6 @@
     window.addEventListener("load", onScroll);
 
     // Fade-in posts when they come into view
-    const postElements = document.querySelectorAll(".post");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
