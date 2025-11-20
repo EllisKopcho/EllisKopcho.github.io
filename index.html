@@ -101,15 +101,19 @@
     }
 
     /* first name slightly higher, last name slightly lower */
+/* DESKTOP name positioning and sizing */
     #first-name {
-      top: 46%;  /* same vertical line */
-      left: 6vw;
+      top: 44%;                         /* vertical placement */
+      left: 6vw;                         /* distance from left edge */
+      font-size: clamp(4.4rem, 12vw, 8.5rem);  /* slightly bigger */
     }
     
     #last-name {
-      top: 46%;  /* same vertical line */
-      right: 6vw;
+      top: 44%;                         /* same baseline as first name */
+      right: 10vw;                       /* pull closer to center */
+      font-size: clamp(3.8rem, 10vw, 7.2rem);  /* slightly smaller */
     }
+
 
 
     .hero-subtitle {
@@ -334,17 +338,19 @@
 
     /* ---------- RESPONSIVE ---------- */
 
-    @media (max-width: 740px) {
-      #first-name {
-        top: 38%;
-        left: 8vw;
-        font-size: clamp(2.6rem, 10vw, 4.2rem);
+      @media (max-width: 740px) {
+        #first-name {
+          top: 38%;
+          left: 8vw;
+          font-size: clamp(3.3rem, 11vw, 4.6rem);
+        }
+        #last-name {
+          top: 50%;
+          right: 10vw;
+          font-size: clamp(3rem, 10vw, 4.2rem);
+        }
       }
-      #last-name {
-        top: 50%;
-        right: 8vw;
-        font-size: clamp(2.6rem, 10vw, 4.2rem);
-      }
+
       .hero-subtitle {
         bottom: 11vh;
         padding: 0 16px;
