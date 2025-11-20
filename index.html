@@ -51,16 +51,25 @@
       z-index: -2;
     }
 
-    .hero-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 70%;
-    filter: contrast(1.05) saturate(1.05);
-    transform: scale(1.08);
-    display: block;
-  }
+    /* container for the hero image */
+    .hero-photo {
+      position: absolute;
+      inset: -6%;          /* bleed slightly past edges */
+      background: #111;
+      overflow: hidden;
+      transform-origin: center;
+    }
 
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* push the “focus” down toward the bottom of the image so you’re visible */
+      object-position: center 95%;
+      filter: contrast(1.05) saturate(1.05);
+      transform: scale(1.08);
+      display: block;
+    }
 
     .hero-bg::before {
       content: "";
@@ -355,7 +364,7 @@
   <section class="hero" id="hero">
     <div class="hero-bg">
       <div class="hero-photo" id="hero-photo">
-        <!-- Replace this with a real photo of you -->
+        <!-- your custom hero image -->
         <img src="images/expanded_background.jpg" />
       </div>
     </div>
@@ -519,8 +528,6 @@
             </div>
             <div class="post-date">Posted · May 2024</div>
           </article>
-
-          <!-- Add more posts by copying the <hr> + <article class="post"> block -->
         </div>
       </div>
     </section>
