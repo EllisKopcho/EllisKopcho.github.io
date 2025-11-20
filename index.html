@@ -91,28 +91,28 @@
 
     .hero-name {
       position: absolute;
-      transform: translateY(-50%) translateX(0);
+      left: 50%;
+      transform: translateX(-50%);  /* center horizontally only */
       font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: clamp(3.8rem, 9vw, 6.5rem);
+      font-size: clamp(3.8rem, 9vw, 6.8rem);  /* nice big stacked title */
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: #fdf6e9;
       white-space: nowrap;
     }
 
+
     /* first name slightly higher, last name slightly lower */
 /* DESKTOP name positioning and sizing */
+/* DESKTOP stacked title */
     #first-name {
-      top: 44%;                         /* vertical placement */
-      left: 6vw;                         /* distance from left edge */
-      font-size: clamp(4.4rem, 12vw, 8.5rem);  /* slightly bigger */
+      top: 30%;   /* upper line */
     }
     
     #last-name {
-      top: 44%;                         /* same baseline as first name */
-      right: 10vw;                       /* pull closer to center */
-      font-size: clamp(3.8rem, 10vw, 7.2rem);  /* slightly smaller */
+      top: 43%;   /* slightly below */
     }
+
 
 
 
