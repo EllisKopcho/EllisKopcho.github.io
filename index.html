@@ -168,6 +168,7 @@
 
     /* ---------- POSTS SECTION (FULL WIDTH) ---------- */
 
+    /* RECENTER BLOG SECTION */
     .posts-shell {
       position: relative;
       width: 100vw;
@@ -176,14 +177,19 @@
       box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
       padding: 32px 0 40px;
       overflow: hidden;
+    
+      /* make sure content is visually centered */
+      display: flex;
+      justify-content: center;
     }
-
+    
     .posts-inner {
       position: relative;
       max-width: var(--max-width);
+      width: 100%;
       margin: 0 auto;
       padding: 0 20px;
-      z-index: 2; /* above the line */
+      z-index: 2;
     }
 
     /* Wiggly line behind posts */
