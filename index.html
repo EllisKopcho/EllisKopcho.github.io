@@ -243,7 +243,7 @@
       padding: 6px 0 18px;
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 1.5s ease, transform 1.5s ease;
     }
 
     .post.is-visible {
@@ -758,12 +758,18 @@
     window.addEventListener("scroll", onScroll);
     window.addEventListener("load", onScroll);
 
-    // Fade-in posts when they come into view
+    // Fade-in posts when they come into view (only fade out what's below)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+          } else {
+            // Only fade out if the post is below the viewport
+            const rect = entry.target.getBoundingClientRect();
+            if (rect.top > window.innerHeight) {
+              entry.target.classList.remove("is-visible");
+            }
           }
         });
       },
@@ -771,6 +777,17 @@
     );
 
     postElements.forEach((post) => observer.observe(post));
+
+    // Also check on scroll to handle the fade-out when scrolling back up past posts
+    window.addEventListener('scroll', () => {
+      postElements.forEach((post) => {
+        const rect = post.getBoundingClientRect();
+        // If post is below viewport, remove visible class so it can fade in again
+        if (rect.top > window.innerHeight) {
+          post.classList.remove("is-visible");
+        }
+      });
+    });
 
     // Automatic carousel for posts with multiple images
     function initCarousels() {
