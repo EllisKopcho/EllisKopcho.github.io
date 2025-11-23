@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Ellis Kopcho – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="png" href="images/favicon.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -286,7 +286,7 @@
     .post-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
       position: absolute;
       top: 0;
@@ -301,6 +301,68 @@
 
     .post-image img:only-child {
       opacity: 1;
+    }
+
+    /* Carousel controls */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.3s ease, opacity 0.3s ease;
+      font-size: 18px;
+      color: #17130f;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .carousel-arrow:hover {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .post-image:hover .carousel-arrow {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .carousel-arrow.prev {
+      left: 10px;
+    }
+
+    .carousel-arrow.next {
+      right: 10px;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .post-date {
@@ -378,7 +440,7 @@
 
       <p class="hero-subtitle">
         I'm a curious person who loves to create, explore, and meet new people.
-        I enjoy working in collaboration with others and creating projects and art with analog technologies.
+        I enjoy collaborating with others and creating projects and art with analog technologies.
       </p>
 
       <div class="scroll-indicator" id="scroll-indicator">
@@ -407,9 +469,9 @@
 
       <div class="posts-inner">
         <header class="posts-header">
-          <div class="posts-label">Projects & posts</div>
-          <div class="posts-title">A few things I've been working on</div>
-          <div class="posts-note">Title on the left, short description in the "blob," and an image on the right.</div>
+          <div class="posts-label">All sorts of things</div>
+          <div class="posts-title">A continuously updated portfolio of the things I do</div>
+          <div class="posts-note">Make sure to check out all the photos and videos!</div>
         </header>
 
         <div class="post-list">
@@ -418,17 +480,18 @@
           <article class="post">
             <div class="post-grid">
               <div>
-                <h2 class="post-title">Continuation of LACSEF project</h2>
+                <h2 class="post-title">LA County Science & Engineering Fair (Cont.)</h2>
                 <div class="post-blob">
-                  3D printing ablative materials for high temperature applications - 
-                  LACSEF
+                  After last year's success, my project partner and I have decided to expand the concept to the 25/26 LACSEF.
+                  This year, we're testing many more materials (see image), and developing a method of quanatative analysis to
+                  quanatatively rate each test sample.
                 </div>
               </div>
               <div class="post-image">
-                <img src="https://picsum.photos/seed/lacsef2/900/650" alt="LACSEF project continuation" />
+                <img src="images/project mats.png" alt="LACSEF materials" />
               </div>
             </div>
-            <div class="post-date">Posted · 2024</div>
+            <div class="post-date">Ongoing</div>
           </article>
 
           <!-- POST 2 -->
@@ -438,7 +501,11 @@
               <div>
                 <h2 class="post-title">'The Cannon' short story</h2>
                 <div class="post-blob">
-                  A creative writing piece exploring themes of technology and humanity.
+                  For my SAS Monsters and Madness course, I wrote this short horror story. I was inspired by cosmic horror by
+                  the likes of Isaac Asmiov and C.M. Kösemen. It takes place in a distopian future-- humanity is involved in a
+                  galactic war where people are dehumanized and seen only as cogs in a machine... a planet-sized cannon. Writing it
+                  involved some difficult world-building and research to make it as realistic as possible and include a lot of hidden meaning
+                  through names and illustative language. Read the attatched PDF!
                 </div>
               </div>
               <div class="post-image">
@@ -451,7 +518,7 @@
                 </iframe>
               </div>
             </div>
-            <div class="post-date">Posted · 2024</div>
+            <div class="post-date">September 15, 2025</div>
           </article>
 
           <!-- POST 3 -->
@@ -459,17 +526,17 @@
           <article class="post">
             <div class="post-grid">
               <div>
-                <h2 class="post-title">Learning to play banjo</h2>
+                <h2 class="post-title">Banjo</h2>
                 <div class="post-blob">
-                  Documenting my journey learning traditional banjo techniques and 
-                  folk music traditions.
+                  For the past 4 months, I've been teaching myself to play the banjo. I was inspired when I started listening
+                  to banjo legends like Earl Scruggs. Here is my banjo on the wall of my bedroom!
                 </div>
               </div>
               <div class="post-image">
-                <img src="https://picsum.photos/seed/banjo/900/650" alt="Learning banjo" />
+                <img src="images/banjo.JPEG" alt="banjo" />
               </div>
             </div>
-            <div class="post-date">Posted · 2024</div>
+            <div class="post-date">Ongoing</div>
           </article>
 
           <!-- POST 4 -->
@@ -477,10 +544,11 @@
           <article class="post">
             <div class="post-grid">
               <div>
-                <h2 class="post-title">Learning to play the khaen</h2>
+                <h2 class="post-title">Khaen</h2>
                 <div class="post-blob">
-                  Exploring the traditional Laotian bamboo mouth organ and its 
-                  unique sound and playing techniques.
+                  Over the past 2 or so years, I've been teaching myself to play the Khaen. The Khaen is a unique, droning hand-organ
+                  from Laos (of which it's the national instrument), and it uses small metal tongues inside each bamboo pipe to vibrate
+                  and create sound. It's design eventually was westernized and became the harmonica.
                 </div>
               </div>
               <div class="post-image">
@@ -493,7 +561,7 @@
                 </iframe>
               </div>
             </div>
-            <div class="post-date">Posted · 2024</div>
+            <div class="post-date">Ongoing</div>
           </article>
 
           <!-- POST 5 -->
@@ -501,14 +569,15 @@
           <article class="post">
             <div class="post-grid">
               <div>
-                <h2 class="post-title">Indicator panel prop</h2>
+                <h2 class="post-title">Indiator Light prop</h2>
                 <div class="post-blob">
-                  Designed and built a functional prop indicator panel with working 
-                  lights and switches.
+                  At my internship, I often find myself making little light-up boards or gadgets for customers to rent out as props. Here is 
+                  a small indicator light panel that I made in a day. 
                 </div>
               </div>
               <div class="post-image">
-                <img src="https://picsum.photos/seed/indicator/900/650" alt="Indicator panel prop" />
+                <img src="images/indicator.JPEG" alt="Project image 1" />
+                <img src="images/indicator back.JPEG" alt="Project image 2" />
               </div>
             </div>
             <div class="post-date">Posted · 2024</div>
@@ -814,11 +883,81 @@
           let currentIndex = 0;
           images[0].classList.add('active');
           
-          setInterval(() => {
-            images[currentIndex].classList.remove('active');
+          // Create navigation arrows
+          const prevArrow = document.createElement('button');
+          prevArrow.className = 'carousel-arrow prev';
+          prevArrow.innerHTML = '‹';
+          prevArrow.setAttribute('aria-label', 'Previous image');
+          
+          const nextArrow = document.createElement('button');
+          nextArrow.className = 'carousel-arrow next';
+          nextArrow.innerHTML = '›';
+          nextArrow.setAttribute('aria-label', 'Next image');
+          
+          // Create dots container
+          const dotsContainer = document.createElement('div');
+          dotsContainer.className = 'carousel-dots';
+          
+          // Create dots
+          const dots = [];
+          for (let i = 0; i < images.length; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'carousel-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+            dots.push(dot);
+          }
+          
+          container.appendChild(prevArrow);
+          container.appendChild(nextArrow);
+          container.appendChild(dotsContainer);
+          
+          function updateSlide() {
+            images.forEach((img, i) => {
+              img.classList.toggle('active', i === currentIndex);
+            });
+            dots.forEach((dot, i) => {
+              dot.classList.toggle('active', i === currentIndex);
+            });
+          }
+          
+          function goToSlide(index) {
+            currentIndex = index;
+            updateSlide();
+            clearInterval(autoplay);
+            autoplay = startAutoplay();
+          }
+          
+          function nextSlide() {
             currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].classList.add('active');
-          }, 3000); // Change image every 3 seconds
+            updateSlide();
+          }
+          
+          function prevSlide() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateSlide();
+          }
+          
+          function startAutoplay() {
+            return setInterval(nextSlide, 3000);
+          }
+          
+          let autoplay = startAutoplay();
+          
+          prevArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlide();
+            clearInterval(autoplay);
+            autoplay = startAutoplay();
+          });
+          
+          nextArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+            clearInterval(autoplay);
+            autoplay = startAutoplay();
+          });
         }
       });
     }
