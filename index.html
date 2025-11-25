@@ -206,6 +206,11 @@
     .posts-header {
       text-align: left;
       margin-bottom: 8px;
+      padding: 30px 25px 20px;
+      background: rgba(253, 248, 239, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .posts-label {
@@ -216,11 +221,15 @@
       margin-bottom: 4px;
     }
 
-    .posts-title {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.06em;
-      color: var(--line);
+    .post-title {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      padding: 12px 16px;
+      background: rgba(253, 248, 239, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 3px;
     }
 
     .posts-note {
@@ -272,6 +281,10 @@
       font-size: 0.9rem;
       color: #241a12;
       max-width: 430px;
+      background: rgba(253, 248, 239, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
     }
 
     .post-image {
@@ -470,11 +483,32 @@
       <div class="posts-inner">
         <header class="posts-header">
           <div class="posts-label">All sorts of things</div>
-          <div class="posts-title">A continuously updated portfolio of the things I do</div>
+          <div class="posts-title">A continuously updated portfolio of the things I do. <em><strong>Sorted chronologically</strong></em></div>
           <div class="posts-note">Make sure to check out all the photos and videos!</div>
         </header>
 
         <div class="post-list">
+
+          <!-- dithering -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">homemade dithering filter</h2>
+                <div class="post-blob">
+                  Experimenting with TouchDesigner and video inputs, I created a dithering filter. The project maps the camera input to a
+                  tiled Bayer Matrix, making an awesome effect.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="images/dither 1.JPEG" alt="Project image 1" />
+                <img src="images/dither 2.jpg" alt="Project image 2" />
+                <img src="images/dithering TD.png" alt="Project image 2" />
+              </div>
+            </div>
+            <div class="post-date">November 22, 2025</div>
+          </article>
+
           <!-- POST 1 -->
           <hr class="post-line" />
           <article class="post">
@@ -529,11 +563,17 @@
                 <h2 class="post-title">Banjo</h2>
                 <div class="post-blob">
                   For the past 4 months, I've been teaching myself to play the banjo. I was inspired when I started listening
-                  to banjo legends like Earl Scruggs. Here is my banjo on the wall of my bedroom!
+                  to banjo legends like Earl Scruggs. Here's a video of me playing.
                 </div>
               </div>
               <div class="post-image">
-                <img src="images/banjo.JPEG" alt="banjo" />
+               <iframe 
+                  src="https://drive.google.com/file/d/1YpPtIOhBJqE0kremCBia6KwNEJxzu0kA/preview" 
+                  width="100%" 
+                  height="100%" 
+                  allow="autoplay"
+                  style="border: 1px solid #111;">
+                </iframe>
               </div>
             </div>
             <div class="post-date">Ongoing</div>
@@ -548,12 +588,12 @@
                 <div class="post-blob">
                   Over the past 2 or so years, I've been teaching myself to play the Khaen. The Khaen is a unique, droning hand-organ
                   from Laos (of which it's the national instrument), and it uses small metal tongues inside each bamboo pipe to vibrate
-                  and create sound. It's design eventually was westernized and became the harmonica.
+                  and create sound. It's design eventually was westernized and became the harmonica. Here is a video of me playing Low-Key Gliding by Hal Walker.
                 </div>
               </div>
               <div class="post-image">
                 <iframe 
-                  src="https://drive.google.com/file/d/1nr4lOqZ0fKU05A2RBsmXJzeosttXYm8w/preview" 
+                  src="https://drive.google.com/file/d/1nnb1-t7bK69Ndn8Gs5tX3vDmb1caZeWk/preview" 
                   width="100%" 
                   height="100%" 
                   allow="autoplay"
@@ -608,6 +648,26 @@
             <div class="post-date">September 21, 2025</div>
           </article>
 
+          <!-- JUNE SHOW (bday) -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Backyard Show - June 15th</h2>
+                <div class="post-blob">
+                  I organized this show as a birthay party, and included some of my best friends and their bands in the set list.
+                  The money from tickets was evenly split among the bands and their members.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="images/bday show.PNG" alt="Show image 1" />
+                <img src="images/feb pic.jpeg" alt="Show image 2" />
+                <img src="images/feb pic 2.jpeg" alt="Show image 3" />
+              </div>
+            </div>
+            <div class="post-date">June 15, 2025</div>
+          </article>
+
           <!-- POST 7 -->
           <hr class="post-line" />
           <article class="post">
@@ -624,6 +684,26 @@
               </div>
             </div>
             <div class="post-date">March 27, 2025</div>
+          </article>
+
+          <!-- JAN SHOW (fires) -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Backyard Show - January 18th</h2>
+                <div class="post-blob">
+                  This backyard show was a fundraiser for the Eaton Fire that ravaged Altadena on January 7th, 2025.
+                  It drawed the largest crowd yet, and raised $650 which was donated to the Pasadena Community Foundation.
+                  Check out the poster and some pictures from the night!
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="images/jan show.JPG" alt="Show image 1" />
+                <img src="images/jan pic.JPEG" alt="Show image 2" />
+              </div>
+            </div>
+            <div class="post-date">January 18, 2025</div>
           </article>
 
           <!-- POST 8 -->
@@ -734,6 +814,47 @@
               </div>
             </div>
             <div class="post-date">November 5, 2024</div>
+          </article>
+
+           <!-- april show -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Backyard Show - April 13th</h2>
+                <div class="post-blob">
+                  This event was hosted as a part of the Persona Non Grata tour. He is a local indie musician who plays all over Los Angeles.
+                  The money made at the door was evenly distributed among the bands and their members.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="images/april show.jpg" alt="Show image 1" />
+                <img src="images/april show.JPEG" alt="Show image 2" />
+                <img src="images/april pic.JPEG" alt="Show image 3" />
+                <img src="images/april show finn.JPG" alt="Show image 4" />
+              </div>
+            </div>
+            <div class="post-date">April 13, 2024</div>
+          </article>
+
+           <!-- first show! -->
+          <hr class="post-line" />
+          <article class="post">
+            <div class="post-grid">
+              <div>
+                <h2 class="post-title">Backyard Show - February 17th</h2>
+                <div class="post-blob">
+                  This show was hosted by my friend's production company, PSI Productions. While they usually put on louder shows, this one
+                  was an unplugged, acoustic set, and mainly consisted of fingerpicking guitar and bedroom indie songs.
+                </div>
+              </div>
+              <div class="post-image">
+                <img src="images/og show.JPEG" alt="Show image 1" />
+                <img src="images/og show (2).JPEG" alt="Show image 2" />
+                <img src="images/og pic 3.JPEG" alt="Show image 3" />
+              </div>
+            </div>
+            <div class="post-date">February 17th, 2024</div>
           </article>
 
           <!-- POST 13 -->
